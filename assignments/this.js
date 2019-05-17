@@ -16,7 +16,7 @@ function saysHi(name) {
     console.log('Hi ' + name);
     console.log(this);
 }
-saysHi(Elan);
+saysHi('Elan');
 // Principle 2
 
 // code example for Implicit Binding
@@ -27,7 +27,7 @@ let bakeChicken = {
         console.log(this);
     }
 }
-bakeChicken.bake(goldenChicken);
+bakeChicken.bake('goldenChicken');
 
 // Principle 3
 
@@ -35,6 +35,7 @@ bakeChicken.bake(goldenChicken);
 function makeCuttingboard(wood) {
     this.wood = wood;
     this.type = " Cutting board";
+    this.finishOil = '';
     this.project = function () {
         console.log(this.wood + this.type);
         console.log(this);
@@ -42,7 +43,7 @@ function makeCuttingboard(wood) {
 };
 let makeMaple = new makeCuttingboard("Maple");
 let makeFeatherwood = new makeCuttingboard("Featherwood");
-
+console.log(makeMaple);
 makeMaple.project();
 makeFeatherwood.project();
 //////////////////////////////////////////////////////////////////
@@ -63,8 +64,27 @@ makeFeatherwood.project();
 
 // greetJohn|makeMaple|.sayGoodbye.call(greetJane|makeMaple|);
 // greetJane|makeFeatherwood|.sayGoodbye.apply(greetJohn|makeFeatherwood|);
+
+
+// GreetMe|makeCuttingboard|.prototype.sayGoodbye|finishOil| = function() {
+//     console.log('Goodbye ' + this.name);
+//     console.log(this);
+// };
+
+makeCuttingboard.prototype.finishOil = function(){
+    console.log('OilTheBoard ' + this.wood);
+    console.log(this);
+}
+function finishBoard(oil){
+    console.log(`The board gets ${this.name} finished with ${oil}`);
+}
+let finishOil = {
+    name:"Danish",
+}
+finishBoard.call(finishOil, "Elan knows whats going on");
+
 // Principle 4
 
 // code example for Explicit Binding
-makeMaple.finishOil.call(makeMaple);
-makeFeatherwood.finishOil.call(makeFeatherwood);
+makeMaple.finishOil.call('makeMaple');
+makeFeatherwood.finishOil.call('makeFeatherwood');
