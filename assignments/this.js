@@ -16,7 +16,7 @@ function saysHi(name) {
     console.log('Hi ' + name);
     console.log(this);
 }
-saysHi('Elan');
+saysHi('Timothy');
 // Principle 2
 
 // code example for Implicit Binding
@@ -76,12 +76,12 @@ makeCuttingboard.prototype.finishOil = function(){
     console.log(this);
 }
 function finishBoard(oil){
-    console.log(`The board gets ${this.name} finished with ${oil}`);
+    console.log(`The board gets ${oil} with ${this.name}`);
 }
 let finishOil = {
-    name:"Danish",
+    name:"Danish Oil",
 }
-finishBoard.call(finishOil, "Elan knows whats going on");
+finishBoard.call(finishOil, "finished");
 
 // Principle 4
 
